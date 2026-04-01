@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>BlueComet ByteStar — Cosmic Dashboard</title>
+
+  <!-- highlight.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <link rel="stylesheet" href="/css/styles.css" />
+
+  <style>
+    /* Cosmic gradient + glow background */
+    body {
+      background: radial-gradient(circle at 20% 20%, #00132a, #000);
+      overflow: hidden;
+      color: #e0f7ff;
+    }
+
+    /* Starfield effect */
+    .starfield {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(white, transparent 1px) repeat;
+      background-size: 2px 2px;
+      opacity: 0.2;
+      animation: drift 60s linear infinite;
+    }
+
+    @keyframes drift {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-50%, -50%); }
+    }
+
+    header.topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      background: rgba(0, 0, 20, 0.8);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 25px rgba(0, 200, 255, 0.2);
+      border-bottom: 1px solid rgba(0, 200, 255, 0.3);
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .title {
+      font-family: "Orbitron", sans-serif;
+      letter-spacing: 1.5px;
+      color: #00bfff;
+      text-shadow: 0 0 8px #0099ff;
+    }
+
+    .side-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .side-btn {
+      background: rgba(0, 50, 100, 0.4);
+      border: 1px solid rgba(0, 200, 255, 0.3);
+      color: #ccefff;
+      border-radius: 10px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .side-btn:hover {
+      background: rgba(0, 150, 255, 0.4);
+      box-shadow: 0 0 15px rgba(0, 200, 255, 0.5);
+    }
+
+    .main-wrap {
+      display: flex;
+      justify-content: space-around;
+      gap: 2rem;
+      padding: 20px;
+    }
+
+    .chat-card, .info-card {
+      background: rgba(0, 20, 40, 0.6);
+      border: 1px solid rgba(0, 150, 255, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 150, 255, 0.1);
+      flex: 1;
+    }
+
+    h2, h3 {
+      color: #00c8ff;
+      text-shadow: 0 0 10px rgba(0, 150, 255, 0.7);
+      margin-bottom: 10px;
+    }
+
+    #chatFeed {
+      height: 300px;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-family: "Courier New", monospace;
+      color: #9be8ff;
+      box-shadow: inset 0 0 15px rgba(0, 150, 255, 0.3);
+    }
+
+    textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: #ccefff;
+      border: 1px solid rgba(0, 150, 255, 0.3);
+      border-radius: 10px;
+      padding: 10px;
+      resize: none;
+      outline: none;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 10px;
+    }
+
+    .cta {
+      background: linear-gradient(90deg, #00b4ff, #0077ff);
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(0, 150, 255, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    .cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 200, 255, 0.8);
+    }
+
+    .cta.alt {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ccc;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    footer.footer {
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 10px;
+      opacity: 0.8;
+      color: #6bcfff;
+      background: rgba(0, 0, 20, 0.7);
+      border-top: 1px solid rgba(0, 150, 255, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="starfield"></div>
+
+  <header class="topbar">
+    <div class="logo-wrap">
+      <div class="rocket">🚀</div>
+      <h1 class="title">BlueCometByteStar</h1>
+    </div>
+
+    <nav class="side-buttons">
+      <button class="side-btn">Terminal / AI Chat</button>
+      <button class="side-btn">Photo / Video Editor</button>
+      <button class="side-btn">Docs / Snippets</button>
+      <button class="side-btn">Cheat Codes</button>
+      <button id="settingsBtn" class="side-btn highlight">Settings</button>
+    </nav>
+  </header>
+
+  <main class="main-wrap">
+    <section class="chat-card">
+      <h2>Live Chat</h2>
+      <div id="chatFeed" class="chat-feed" aria-live="polite"></div>
+      <div class="input-row">
+        <textarea id="chatInput" placeholder="Type code or a message... (paste code, press Send)" rows="6"></textarea>
+      </div>
+      <div class="controls">
+        <button id="sendBtn" class="cta">Send</button>
+        <button id="clearBtn" class="cta alt">Clear</button>
+      </div>
+    </section>
+
+    <aside class="info-card">
+      <h3>Private Messages</h3>
+      <p>Future: Direct messages between you and users will appear here.</p>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    Ø ATØB.Q • © 2025 BlueComet Studio, INC. | ByteSt★R Technologies, LLC.
+  </footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="/js/chat.js"></script>
+</body>
+</html>
