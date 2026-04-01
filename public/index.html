@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueCometByteStar — Sign In</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h1>🚀 BlueCometByteStar</h1>
+    <div class="auth-box">
+      <input type="text" id="username" placeholder="Username" maxlength="13" />
+      <input type="password" id="password" placeholder="Password" />
+      <button onclick="login()">Sign In</button>
+      <p class="alt" onclick="toggleCreate()">Create Account</p>
+    </div>
+
+    <div class="create-box hidden">
+      <input type="text" id="newUsername" placeholder="Create username (≤13 chars)" maxlength="13" />
+      <input type="password" id="newPassword" placeholder="Create password" />
+      <input type="password" id="confirmPassword" placeholder="Confirm password" />
+      <input type="email" id="email" placeholder="Email (optional)" />
+      <button onclick="createAccount()">Create Account</button>
+      <p class="alt" onclick="toggleCreate()">Back to Sign In</p>
+    </div>
+  </div>
+  <script src="./js/main.js"></script>
+</body>
+</html>
