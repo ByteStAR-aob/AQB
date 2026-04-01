@@ -1,0 +1,195 @@
+/* 🌌 BlueComet ByteStar — Cosmic Core Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap');
+
+:root {
+  --bluecomet-primary: #00b4ff;
+  --bluecomet-glow: rgba(0, 200, 255, 0.6);
+  --deep-space: #000010;
+  --cosmic-dark: #001830;
+  --text-color: #dff6ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Orbitron", sans-serif;
+  background: radial-gradient(circle at 25% 25%, #001a33, #000);
+  color: var(--text-color);
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🌠 Floating stars */
+.starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(white, transparent 1px) repeat;
+  background-size: 2px 2px;
+  opacity: 0.15;
+  animation: drift 60s linear infinite;
+  z-index: -1;
+}
+
+@keyframes drift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-50%, -50%); }
+}
+
+/* 🚀 Header */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 20, 40, 0.8);
+  padding: 15px 25px;
+  border-bottom: 1px solid rgba(0, 200, 255, 0.3);
+  box-shadow: 0 0 25px rgba(0, 200, 255, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  color: var(--bluecomet-primary);
+  font-weight: 800;
+  text-shadow: 0 0 10px var(--bluecomet-glow);
+}
+
+/* 🧭 Navigation buttons */
+.side-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.side-btn {
+  background: rgba(0, 60, 100, 0.4);
+  border: 1px solid rgba(0, 200, 255, 0.3);
+  border-radius: 12px;
+  color: var(--text-color);
+  font-size: 0.85rem;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.side-btn:hover {
+  background: rgba(0, 150, 255, 0.3);
+  box-shadow: 0 0 20px var(--bluecomet-glow);
+  transform: scale(1.05);
+}
+
+/* 💬 Chat + Info sections */
+.main-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2rem;
+  padding: 20px;
+  flex: 1;
+}
+
+.chat-card,
+.info-card {
+  flex: 1;
+  min-width: 300px;
+  background: rgba(0, 25, 50, 0.6);
+  border: 1px solid rgba(0, 200, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.15);
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2, h3 {
+  color: var(--bluecomet-primary);
+  text-shadow: 0 0 10px rgba(0, 200, 255, 0.7);
+  margin-bottom: 10px;
+}
+
+/* 🧠 Chat feed terminal box */
+#chatFeed {
+  height: 320px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 15px;
+  font-family: "Courier New", monospace;
+  color: #a8f7ff;
+  box-shadow: inset 0 0 20px rgba(0, 150, 255, 0.25);
+}
+
+/* 🧍 Input area */
+textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--text-color);
+  border: 1px solid rgba(0, 200, 255, 0.3);
+  border-radius: 10px;
+  padding: 10px;
+  resize: none;
+  outline: none;
+}
+
+textarea:focus {
+  box-shadow: 0 0 15px rgba(0, 150, 255, 0.5);
+}
+
+/* 🚀 Send/Clear buttons */
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cta {
+  background: linear-gradient(90deg, #00b4ff, #0077ff);
+  border: none;
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 10px 22px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 200, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.cta:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 25px rgba(0, 250, 255, 0.8);
+}
+
+.cta.alt {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ccefff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ⚡ Footer */
+.footer {
+  text-align: center;
+  font-size: 0.8rem;
+  padding: 10px;
+  background: rgba(0, 0, 20, 0.7);
+  color: #79e1ff;
+  border-top: 1px solid rgba(0, 150, 255, 0.3);
+}
