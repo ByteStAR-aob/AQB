@@ -1,0 +1,53 @@
+/* ===== Chat Bubble Styles ===== */
+.msg-bubble {
+  background: rgba(0,10,20,0.85);
+  border: 1px solid #0ff;
+  border-radius: 12px;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  position: relative;
+  box-shadow: 0 0 10px #0ff;
+}
+
+.msg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.copy-btn {
+  background: none;
+  border: none;
+  color: #0ff;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.msg-username {
+  font-weight: bold;
+  color: #0ff;
+  margin: 0 0.5rem;
+}
+
+.msg-time {
+  color: #0aa;
+  font-size: 0.75rem;
+}
+
+.msg-body {
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Optional: syntax highlighting with highlight.js default theme */
+pre code {
+  display: block;
+  background: #001010;
+  color: #0ff;
+  padding: 0.5rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
